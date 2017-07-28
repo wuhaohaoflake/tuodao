@@ -1,7 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-<%= require('html-loader!./layout/html-head.html') %>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
 <body>
-<script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+hello world!!~~~~~~~
+
+
+<% if (env !== "production") { %>
+<script src="/reload/reload.js"></script>
+<% } %>
 </body>
 </html>

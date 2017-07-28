@@ -1,1 +1,3 @@
-console.log('i am global')
+//
+console.log('i am g');
+

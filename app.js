@@ -1,38 +1,63 @@
-var express = require('express');
-var path = require('path');
+var express = require('express'),
+    path = require('path'),
+    consolidate = require('consolidate');
+
+var isDev = process.env.NODE_ENV !== 'production';
 var app = express();
+var port = 3000;
+
 var ejs = require('ejs');
+// app.engine('html', ejs.__express);
+// app.set('view engine', 'html');
+// app.set('views', '192.168.0.151:3000/view');
+
 app.set('views',path.join(__dirname , './src/view') );
-  app.engine('.html', ejs.__express);  
-  app.set('view engine', 'html');
+app.engine('.html', ejs.__express);  
+app.set('view engine', 'html');
 
-var webpack = require('webpack'),
-    webpackDevMiddleware = require('webpack-dev-middleware'),
-    webpackHotMiddleware = require('webpack-hot-middleware'),
-    webpackDevConfig = require('./webpack.config.js');
 
-var compiler = webpack(webpackDevConfig);
+app.locals.env = process.env.NODE_ENV || 'dev';
+app.locals.reload = true;
 
-// attach to the compiler & the server
-app.use(webpackDevMiddleware(compiler, {
+if (isDev) {
 
-    // public path should be the same with webpack config
-    publicPath: webpackDevConfig.output.publicPath,
-    noInfo: true,
-    stats: {
-        colors: true
-    }
-}));
-app.use(webpackHotMiddleware(compiler));
+    var webpack = require('webpack'),
+        webpackDevMiddleware = require('webpack-dev-middleware'),
+        webpackHotMiddleware = require('webpack-hot-middleware'),
+        webpackDevConfig = require('./webpack.config.js');
 
-app.get('/', function (req, res) {
-  // res.send('Hello World!');
-  res.render('index.html');
-});
+    var compiler = webpack(webpackDevConfig);
 
-var server = app.listen(3000, function () {
-  var host = server.address().address;
-  var port = server.address().port;
+    // attach to the compiler & the server
+    app.use(webpackDevMiddleware(compiler, {
 
-  console.log('Example app listening at http://%s:%s', host, port);
-});
+        // public path should be the same with webpack config
+        publicPath: webpackDevConfig.output.publicPath,
+        noInfo: true,
+        stats: {
+            colors: true
+        }
+    }));
+    app.use(webpackHotMiddleware(compiler));
+var birds = require('./src/routes');
+app.use('/', birds);
+    // require('./src/routes')(app);
+
+    var reload = require('reload');
+    var http = require('http');
+
+    var server = http.createServer(app);
+    reload(server, app);
+
+    server.listen(port, function(){
+        console.log('App (dev) is now running on port 3000!');
+    });
+} else {
+
+
+    app.use(express.static(path.join(__dirname, 'public')));
+    // require('./src/routes')(app);
+    app.listen(port, function () {
+        console.log('App (production) is now running on port 3000!');
+    });
+}
