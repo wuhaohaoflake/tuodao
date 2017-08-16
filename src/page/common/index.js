@@ -1,3 +1,3 @@
 //
-console.log('i am g');
+require('./layout.scss');
 

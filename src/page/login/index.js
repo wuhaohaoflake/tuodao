@@ -1,3 +1,3 @@
-require('./login.css');
+require('./login.scss');
 console.log('this is login');
 
