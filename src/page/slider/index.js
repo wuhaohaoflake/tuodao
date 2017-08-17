@@ -1,4 +1,4 @@
-require('./jquery.slider.css');
+// require('./jquery.slider.css');
 require('./jquery.slider.min.js');
 $("#slider2").slider({
 	width: 340,

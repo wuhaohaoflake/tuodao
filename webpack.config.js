@@ -40,10 +40,6 @@ var devConfig = {
 			exclude: /node_modules/
 		}],
 		loaders: [{
-			test: /\.css$/,
-			loader: ExtractTextPlugin.extract('style-loader','css-loader')
-		},
-		{
 			test: /\.scss$/,
 			loader: ExtractTextPlugin.extract('style-loader','css-loader!sass-loader')
 		},
