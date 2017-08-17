@@ -13,7 +13,7 @@ $(function(){
 		shownum: nums,
 		backfun: function(e) {
 			console.log(e.current);
-			$("#data-container").html(thisDate(e.current));
+			// $("#data-container").html(thisDate(e.current));
 		}
 	});
 	var thisDate = function(curr){
