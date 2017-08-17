@@ -44,7 +44,30 @@ var devConfig = {
 			loader: ExtractTextPlugin.extract('style-loader','css-loader')
 		},
 		{test: /\.png$/, loader: "file-loader?name=images/[name].[ext]" }]
+			test: /\.scss$/,
+			loader: ExtractTextPlugin.extract('style-loader','css-loader!sass-loader')
+		},
+		{
+			test: /\.(gif|png|jpg)\??.*$/,
+			loader: 'url-loader?limit=100&name=resource/[name].[ext]'
+		},
+		{
+			test: /\.(woff|svg|eot|ttf)\??.*$/,
+			loader: 'url-loader?limit=100&name=resource/iconfont/[name].[ext]'
+		}
 
+		]
+
+	},
+	// externals:{
+	// 	'jquery' : 'window.jQuery'
+	// },
+	resolve:{
+		alias : {
+			util : __dirname + '/src/util',
+			page : __dirname + '/src/page'
+
+		}
 	},
 	plugins: [
 		// new webpack.HotModuleReplacementPlugin(),
@@ -54,12 +77,14 @@ var devConfig = {
         		NODE_ENV: '"+env+"'
         	}
 		}),
+		// 独立通用模块到js/base.js
 		new webpack.optimize.CommonsChunkPlugin({
 			name : 'common',
 			filename : 'js/base.js'
 		}),
+		// css单独打包
 		new ExtractTextPlugin('css/[name].css'),
-
+		// HTML文件处理
 		new HtmlWebpackPlugin(getHtmlConfig('index')),
 		new HtmlWebpackPlugin(getHtmlConfig('login')),
 		new HtmlWebpackPlugin(getHtmlConfig('paging')),
