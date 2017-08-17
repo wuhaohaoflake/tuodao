@@ -16,14 +16,16 @@ var getHtmlConfig = function(name){
 
 };
 
-var publicPath = 'http://192.168.0.151:3000/';
+var publicPath = 'http://72.127.2.40:3000/';
 var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
 var devConfig = {
 	entry: {
 		'common': ['./src/page/common/index.js',hotMiddlewareScript],
 		'index': ['./src/page/index/index.js', hotMiddlewareScript,],
-		'login': ['./src/page/login/index.js', hotMiddlewareScript]
+		'login': ['./src/page/login/index.js', hotMiddlewareScript],
+		'paging': ['./src/page/paging/index.js', hotMiddlewareScript],
+		'slider': ['./src/page/slider/index.js', hotMiddlewareScript]
 	},
 	output: {
 		filename: 'js/[name].js',
@@ -40,7 +42,8 @@ var devConfig = {
 		loaders: [{
 			test: /\.css$/,
 			loader: ExtractTextPlugin.extract('style-loader','css-loader')
-		}]
+		},
+		{test: /\.png$/, loader: "file-loader?name=images/[name].[ext]" }]
 
 	},
 	plugins: [
@@ -59,7 +62,8 @@ var devConfig = {
 
 		new HtmlWebpackPlugin(getHtmlConfig('index')),
 		new HtmlWebpackPlugin(getHtmlConfig('login')),
-
+		new HtmlWebpackPlugin(getHtmlConfig('paging')),
+		new HtmlWebpackPlugin(getHtmlConfig('slider')),
 		// new webpack.optimize.OccurenceOrderPlugin(), 
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin()
