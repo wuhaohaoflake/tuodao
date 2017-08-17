@@ -43,7 +43,7 @@ var devConfig = {
 			test: /\.css$/,
 			loader: ExtractTextPlugin.extract('style-loader','css-loader')
 		},
-		{test: /\.png$/, loader: "file-loader?name=images/[name].[ext]" }]
+		{
 			test: /\.scss$/,
 			loader: ExtractTextPlugin.extract('style-loader','css-loader!sass-loader')
 		},
