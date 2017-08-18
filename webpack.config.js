@@ -25,7 +25,8 @@ var devConfig = {
 		'index': ['./src/page/index/index.js', hotMiddlewareScript,],
 		'login': ['./src/page/login/index.js', hotMiddlewareScript],
 		'paging': ['./src/page/paging/index.js', hotMiddlewareScript],
-		'slider': ['./src/page/slider/index.js', hotMiddlewareScript]
+		'slider': ['./src/page/slider/index.js', hotMiddlewareScript],
+		'register': ['./src/page/register/index.js', hotMiddlewareScript]
 	},
 	output: {
 		filename: 'js/[name].js',
@@ -85,6 +86,7 @@ var devConfig = {
 		new HtmlWebpackPlugin(getHtmlConfig('login')),
 		new HtmlWebpackPlugin(getHtmlConfig('paging')),
 		new HtmlWebpackPlugin(getHtmlConfig('slider')),
+		new HtmlWebpackPlugin(getHtmlConfig('register')),
 		// new webpack.optimize.OccurenceOrderPlugin(), 
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin()
