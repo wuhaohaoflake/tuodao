@@ -7,17 +7,29 @@ $bgColor:       #f2f2f2;
 $assistColor:   #d7c08e;
 // 分割线和线框
 $borderColor:   #ddd;
+$borderColorf2: #f2f2f2;
+
+// 各行变色
+$bgColorfb:     #fbfbfb;
 // 说明性或辅助线文字
 $fontColor9e:   #9e9e9e;
 $fontColor333:  #333;
 $fontColor70:   #707070;
 $fontColor74:   #ff7400;
 $fontColorab:   #ababab;
-
+// 已回款
+$fontColorbd:   #58bd0d;
+// 匹配中
+$fontColor9E:   #9e9e9e;
+// 已撤标
+$fontColore6:   #e60012;
+// 回款中
+$fontColor19:  #ffa019;
 // 字号
 $fontSize12:    12px;
 $fontSize14:    14px;
 $fontSize16:    16px;
+$fontSize18:    18px;
 $fontSize20:    20px;
 
 
@@ -69,7 +81,7 @@ $fontSize20:    20px;
   -moz-transform: rotate(-180deg);
   -o-transform: rotate(-180deg);
   -ms-transform: rotate(-180deg);
-} 
+}
 
 
 
@@ -132,7 +144,11 @@ $fontSize20:    20px;
     &.bottom-tips span{bottom:0;left:50%;margin-left:-6px}
     &.bottom-tips span.b{border-top-color: #ddd;bottom:-10px;}
     &.bottom-tips span.t{border-top-color: #fff;bottom:-9px;}
-  
+
+    &.bottomR-tips span{bottom:0;left:91%;margin-left:-6px}
+    &.bottomR-tips span.b{border-top-color: #ddd;bottom:-10px;}
+    &.bottomR-tips span.t{border-top-color: #fff;bottom:-9px;}
+
     &.left-tips span{left:0;top:50%;margin-top:-5px}
     &.left-tips span.b{border-right-color: #ddd;left:-12px}
     &.left-tips span.t{border-right-color: #fff;left:-11px}
